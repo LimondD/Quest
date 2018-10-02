@@ -15,11 +15,16 @@ namespace Web.Controllers
     [AllowAnonymous]
     public class AccountController : ControllerBase
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public AccountController(IConfiguration config)
         {
             _config = config;
+        }
+
+        public void Test(Test user)
+        {
+
         }
 
         [HttpPost]

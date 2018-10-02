@@ -6,12 +6,15 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 
+import { UserService } from '../shared/services/user.service';
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule
   ],
   declarations: [LayoutComponent, HeaderComponent, FooterComponent, NavMenuComponent],
-  exports: [LayoutComponent]
+  exports: [LayoutComponent],
+  providers: [UserService]
 })
 export class UiModule { }
