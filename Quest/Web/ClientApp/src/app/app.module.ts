@@ -13,7 +13,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginFormComponent } from './account/login-form/login-form.component';
 import { UiModule } from './ui/ui.module';
 
-import { AuthGuard } from './auth.guard';
+import { routing } from './app.routing';
+
 
 import { ConfigService } from './shared/utils/config.service';
 
@@ -30,12 +31,13 @@ import { ConfigService } from './shared/utils/config.service';
     HttpClientModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'login', component: LoginFormComponent },
-    ]),
+    routing,
+    //RouterModule.forRoot([
+    //  { path: '', component: HomeComponent, pathMatch: 'full' },
+    //  { path: 'counter', component: CounterComponent },
+    //  { path: 'fetch-data', component: FetchDataComponent },
+    //  { path: 'login', component: LoginFormComponent },
+    //]),
     UiModule,
   ],
   providers: [ConfigService, {

@@ -22,11 +22,6 @@ namespace Web.Controllers
             _config = config;
         }
 
-        public void Test(Test user)
-        {
-
-        }
-
         [HttpPost]
         public IActionResult Login([FromBody]UserModel login)
         {

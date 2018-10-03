@@ -25,8 +25,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\account\account.routing.ts" />
+    <None Remove="ClientApp\src\app\account\profile\profile.routing.ts" />
+    <None Remove="ClientApp\src\app\app.routing.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\shared\services\" />
     <Folder Include="ClientApp\src\app\shared\utils\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\account\account.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\account\profile\profile.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
