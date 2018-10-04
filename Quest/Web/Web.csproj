@@ -27,6 +27,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\account\account.routing.ts" />
     <None Remove="ClientApp\src\app\account\profile\profile.routing.ts" />
+    <None Remove="ClientApp\src\app\account\UserModel.ts" />
     <None Remove="ClientApp\src\app\app.routing.ts" />
   </ItemGroup>
 
@@ -38,6 +39,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\account\account.routing.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\account\profile\profile.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\account\UserModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
   </ItemGroup>
 

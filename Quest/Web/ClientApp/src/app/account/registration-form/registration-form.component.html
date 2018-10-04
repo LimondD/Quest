@@ -1,3 +1,32 @@
-<p>
-  registration-form works!
-</p>
+<form #f="ngForm" (ngSubmit)="registration(f)">
+  <div class="form-row form-group">
+    <div class="col">
+      <label for="lastname">Фамилия</label>
+      <input type="text" [(ngModel)]="user.lastname" id="lastname" name="lastname" class="form-control" placeholder="Фамилия" required/>
+    </div>
+    <div class="col">
+      <label for="name">Имя</label>
+      <input type="text" id="name" class="form-control" placeholder="Имя" />
+    </div>
+    <div class="col">
+      <label for="patronymic">Отчество</label>
+      <input type="text" id="patronymic" class="form-control" placeholder="Отчество" />
+    </div>
+  </div>
+  <div class="form-row form-group ">
+    <div class="col">
+      <label for="birthDate">Дата рождения</label>
+      <input type="date" id="birthDate" class="form-control" placeholder="Email" required name="email" tmFocus />
+    </div>
+    <div class="col">
+      <label for="email">Email</label>
+      <input type="text" id="email" class="form-control" placeholder="Email" required name="email" tmFocus />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Зарегистироваться</button>
+    </div>
+  </div>
+</form>

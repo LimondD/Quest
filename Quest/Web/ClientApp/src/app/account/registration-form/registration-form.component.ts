@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModel } from '../UserModel';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationFormComponent implements OnInit {
 
-  constructor() { }
+  user = new UserModel();
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
+  registration() {
+    alert(this.user.lastname);
+  };
 }
