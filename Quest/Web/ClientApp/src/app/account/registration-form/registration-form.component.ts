@@ -16,6 +16,6 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   registration() {
-    alert(this.user.lastname);
+    alert(JSON.stringify(this.user));
   };
 }

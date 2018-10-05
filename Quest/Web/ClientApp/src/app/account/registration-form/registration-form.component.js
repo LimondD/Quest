@@ -16,7 +16,7 @@ let RegistrationFormComponent = class RegistrationFormComponent {
     ngOnInit() {
     }
     registration() {
-        alert(this.user.lastname);
+        alert(JSON.stringify(this.user));
     }
     ;
 };

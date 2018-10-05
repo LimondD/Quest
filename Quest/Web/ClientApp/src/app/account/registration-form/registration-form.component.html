@@ -2,25 +2,35 @@
   <div class="form-row form-group">
     <div class="col">
       <label for="lastname">Фамилия</label>
-      <input type="text" [(ngModel)]="user.lastname" id="lastname" name="lastname" class="form-control" placeholder="Фамилия" required/>
+      <input type="text" [(ngModel)]="user.lastname" id="lastname" name="lastname" class="form-control" placeholder="Фамилия" required tmFocus />
     </div>
     <div class="col">
       <label for="name">Имя</label>
-      <input type="text" id="name" class="form-control" placeholder="Имя" />
+      <input type="text" [(ngModel)]="user.name" id="name" name="name" class="form-control" placeholder="Имя" />
     </div>
     <div class="col">
       <label for="patronymic">Отчество</label>
-      <input type="text" id="patronymic" class="form-control" placeholder="Отчество" />
+      <input type="text" [(ngModel)]="user.patronymic" id="patronymic" name="patronymic" class="form-control" placeholder="Отчество" />
     </div>
   </div>
   <div class="form-row form-group ">
     <div class="col">
       <label for="birthDate">Дата рождения</label>
-      <input type="date" id="birthDate" class="form-control" placeholder="Email" required name="email" tmFocus />
+      <input type="date" [(ngModel)]="user.birthDate" id="birthDate" name="birthDate" class="form-control" placeholder="Дата рождения" required />
     </div>
     <div class="col">
       <label for="email">Email</label>
-      <input type="text" id="email" class="form-control" placeholder="Email" required name="email" tmFocus />
+      <input type="text" [(ngModel)]="user.email" id="email" name="email" class="form-control" placeholder="Email" required />
+    </div>
+  </div>
+  <div class="form-row form-group ">
+    <div class="col">
+      <label for="password">Пароль</label>
+      <input type="password" [(ngModel)]="user.password" id="password" name="password" class="form-control" placeholder="Пароль" required />
+    </div>
+    <div class="col">
+      <label for="confirmPassword">Повторите пароль</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required />
     </div>
   </div>
 
