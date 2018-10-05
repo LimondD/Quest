@@ -16,6 +16,14 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   registration() {
-    alert(JSON.stringify(this.user));
+    return this.userService.create(this.user)
+      .subscribe(result => result);
+      //.finally(() => this.isRequesting = false)
+      //.subscribe(
+      //  result => {
+      //    if (result) {
+      //    }
+      //  });
+        //error => this.errors = error);
   };
 }

@@ -37,6 +37,15 @@ let UserService = class UserService extends base_service_1.BaseService {
             .map(res => res.json())
             .catch(this.handleError);
     }
+    create(user) {
+        let body = JSON.stringify(user);
+        let headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        let options = new http_1.RequestOptions({ headers: headers });
+        return this.http.put(this.baseUrl + "/Account/CreateUser", body, options)
+            .map(res => res.json())
+            .catch(this.handleError);
+    }
     login(userName, password) {
         let headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -58,21 +67,6 @@ let UserService = class UserService extends base_service_1.BaseService {
     }
     isLoggedIn() {
         return this.loggedIn;
-    }
-    facebookLogin(accessToken) {
-        let headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        let body = JSON.stringify({ accessToken });
-        return this.http
-            .post(this.baseUrl + '/externalauth/facebook', body, { headers })
-            .map(res => res.json())
-            .map(res => {
-            localStorage.setItem('auth_token', res.auth_token);
-            this.loggedIn = true;
-            this._authNavStatusSource.next(true);
-            return true;
-        })
-            .catch(this.handleError);
     }
 };
 UserService = __decorate([

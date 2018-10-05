@@ -38,7 +38,13 @@ namespace Web.Controllers
             return response;
         }
 
-        public void CreateUser(UserDto user)
+        [HttpPut]
+        public void CreateUser([FromBody]UserDto user)
+        {
+
+        }
+
+        public void CreateUser2()
         {
 
         }
