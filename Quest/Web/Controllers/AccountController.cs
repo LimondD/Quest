@@ -6,7 +6,6 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Web.DTO;
 using Web.Models;
 
 namespace Web.Controllers
@@ -36,17 +35,6 @@ namespace Web.Controllers
             }
 
             return response;
-        }
-
-        [HttpPut]
-        public void CreateUser([FromBody]UserDto user)
-        {
-
-        }
-
-        public void CreateUser2()
-        {
-
         }
 
         private string GenerateJSONWebToken(UserModel userInfo)
