@@ -70,8 +70,16 @@
     </div>
     <div class="col">
       <label for="confirmPassword">Повторите пароль</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-             placeholder="Повторите пароль" required />
+      <input type="password" [(ngModel)]="user.confirmPassword" id="confirmPassword" name="confirmPassword" #confirmPassword="ngModel" class="form-control"
+             placeholder="Повторите пароль" required confirmEqualValidator="password"/>
+      <div *ngIf="confirmPassword.invalid && confirmPassword.dirty" class="alert alert-danger">
+        <div *ngIf="confirmPassword.errors.required">
+          Поле обязательно для заполнения
+        </div>
+        <div *ngIf="confirmPassword.errors.notEqual">
+          Пароли не совпадают
+        </div>
+      </div>
     </div>
   </div>
 

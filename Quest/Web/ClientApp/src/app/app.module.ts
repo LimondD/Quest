@@ -12,7 +12,6 @@ import { UiModule } from './ui/ui.module';
 
 import { routing } from './app.routing';
 
-
 import { ConfigService } from './shared/utils/config.service';
 import { AccountModule } from './account/account.module';
 
@@ -21,7 +20,7 @@ import { AccountModule } from './account/account.module';
     AppComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent,
+    FetchDataComponent
   ],
   imports: [
     BrowserModule,
