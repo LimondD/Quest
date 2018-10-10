@@ -1,8 +1,10 @@
+using DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -41,6 +43,10 @@ namespace Web
 
             #endregion
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var connection = Configuration.GetConnectionString("Main");
+            services.AddDbContext<ApplicationContext>
+                (options => options.UseSqlServer(connection));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
