@@ -16,7 +16,7 @@ const emailPattern = RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$");
 export class EmailValidatorDirective implements Validator {
   @Input() confirmEqualValidator: string;
   validate(control: AbstractControl): { [key: string]: any } | null {
-    if (emailPattern.test(control.value)) {
+    if (!emailPattern.test(control.value)) {
       return { 'notValidEmail': true };
     }
 

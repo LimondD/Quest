@@ -9,11 +9,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var EmailValidatorDirective_1;
 const forms_1 = require("@angular/forms");
 const core_1 = require("@angular/core");
+const emailPattern = RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$");
 let EmailValidatorDirective = EmailValidatorDirective_1 = class EmailValidatorDirective {
     validate(control) {
-        const controlToCompare = control.parent.get(this.confirmEqualValidator);
-        if (controlToCompare && controlToCompare.value !== control.value) {
-            return { 'notEqual': true };
+        if (!emailPattern.test(control.value)) {
+            return { 'notValidEmail': true };
         }
         return null;
     }

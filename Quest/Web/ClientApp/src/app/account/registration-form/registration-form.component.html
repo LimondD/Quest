@@ -1,7 +1,7 @@
 <form #f="ngForm" (ngSubmit)="registration(f)">
   <div class="form-row form-group">
     <div class="col">
-      <label for="lastname">Фамилия</label>
+      <label class="required" for="lastname">Фамилия</label>
       <input type="text" [(ngModel)]="user.lastname" id="lastname" name="lastname" #lastName="ngModel"
              class="form-control" placeholder="Фамилия" required minlength="4" tmFocus />
       <div *ngIf="lastName.invalid && lastName.dirty" class="alert alert-danger">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col">
-      <label for="name">Имя</label>
+      <label class="required" for="name">Имя</label>
       <input type="text" [(ngModel)]="user.name" id="name" name="name" #name="ngModel"
              class="form-control" placeholder="Имя" required/>
       <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
@@ -31,7 +31,7 @@
   </div>
   <div class="form-row form-group ">
     <div class="col">
-      <label for="birthDate">Дата рождения</label>
+      <label class="required" for="birthDate">Дата рождения</label>
       <input type="date" [(ngModel)]="user.birthDate" id="birthDate" name="birthDate" #birthDate="ngModel"
              class="form-control" placeholder="Дата рождения" required />
       <div *ngIf="birthDate.invalid && birthDate.dirty" class="alert alert-danger">
@@ -41,22 +41,22 @@
       </div>
     </div>
     <div class="col">
-      <label for="email">Email</label>
+      <label class="required" for="email">Email</label>
       <input type="text" [(ngModel)]="user.email" id="email" name="email" #email="ngModel"
-             class="form-control" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
-      <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
+             class="form-control" placeholder="Email" required emailValidator />
+      <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
         <div *ngIf="email.errors.required">
           Email обязательное поле
         </div>
-        <div *ngIf="email.errors.pattern">
-          Email указан неверно
+        <div *ngIf="email.errors?.notValidEmail && email.touched && !email.errors.required">
+          Укажите корректный Email
         </div>
       </div>
     </div>
   </div>
   <div class="form-row form-group ">
     <div class="col">
-      <label for="password">Пароль</label>
+      <label class="required" for="password">Пароль</label>
       <input type="password" [(ngModel)]="user.password" id="password" name="password" #password="ngModel"
              class="form-control" placeholder="Пароль" required minlength="6"/>
       <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
@@ -69,7 +69,7 @@
       </div>
     </div>
     <div class="col">
-      <label for="confirmPassword">Повторите пароль</label>
+      <label class="required" for="confirmPassword">Повторите пароль</label>
       <input type="password" [(ngModel)]="user.confirmPassword" id="confirmPassword" name="confirmPassword" #confirmPassword="ngModel" class="form-control"
              placeholder="Повторите пароль" required confirmEqualValidator="password"/>
       <div *ngIf="confirmPassword.invalid && confirmPassword.dirty" class="alert alert-danger">
