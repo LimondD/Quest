@@ -52,18 +52,18 @@ export class UserService extends BaseService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.put(this.baseUrl + "/Account/CreateUser", body, options)
-      .map(res => res.json())
+      //.map(res => res.json())
       .catch(this.handleError);
   }
 
-   login(userName, password) {
+   login(email, password) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http
       .post(
       this.baseUrl + '/Account/login',
-      JSON.stringify({ userName/*, password*/ }),{ headers }
+      JSON.stringify({ email, password }),{ headers }
       )
       .map(res => res.json())
       .map(res => {

@@ -43,14 +43,14 @@ let UserService = class UserService extends base_service_1.BaseService {
         headers.append('Content-Type', 'application/json');
         let options = new http_1.RequestOptions({ headers: headers });
         return this.http.put(this.baseUrl + "/Account/CreateUser", body, options)
-            .map(res => res.json())
+            //.map(res => res.json())
             .catch(this.handleError);
     }
-    login(userName, password) {
+    login(email, password) {
         let headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http
-            .post(this.baseUrl + '/Account/login', JSON.stringify({ userName /*, password*/ }), { headers })
+            .post(this.baseUrl + '/Account/login', JSON.stringify({ email, password }), { headers })
             .map(res => res.json())
             .map(res => {
             localStorage.setItem('auth_token', res.token);

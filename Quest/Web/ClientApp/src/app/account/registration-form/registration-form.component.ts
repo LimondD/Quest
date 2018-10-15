@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserModel } from '../UserModel';
 import { UserService } from '../../shared/services/user.service';
 
@@ -10,14 +11,18 @@ import { UserService } from '../../shared/services/user.service';
 export class RegistrationFormComponent implements OnInit {
 
   user = new UserModel();
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
   registration() {
     return this.userService.create(this.user)
-      .subscribe(result => result);
+      .subscribe(result => {
+        this.router.navigate(['/login']);
+      },
+      error => console.log(error)
+      );
       //.finally(() => this.isRequesting = false)
       //.subscribe(
       //  result => {

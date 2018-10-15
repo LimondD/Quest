@@ -19,7 +19,7 @@ namespace DAL.Models.User
         [MaxLength(64)]
         public string Patronymic { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "date")]
         public DateTime BirthDate { get; set; }
 
         [Required]

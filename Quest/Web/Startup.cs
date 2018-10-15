@@ -1,3 +1,4 @@
+using Core.Services.EncryptorService;
 using DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -53,6 +54,8 @@ namespace Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSingleton<IEncryptorService, EncryptorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

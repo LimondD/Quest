@@ -9,15 +9,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const UserModel_1 = require("../UserModel");
 let RegistrationFormComponent = class RegistrationFormComponent {
-    constructor(userService) {
+    constructor(userService, router) {
         this.userService = userService;
+        this.router = router;
         this.user = new UserModel_1.UserModel();
     }
     ngOnInit() {
     }
     registration() {
         return this.userService.create(this.user)
-            .subscribe(result => result);
+            .subscribe(result => {
+            this.router.navigate(['/login']);
+        }, error => console.log(error));
         //.finally(() => this.isRequesting = false)
         //.subscribe(
         //  result => {
