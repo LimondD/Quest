@@ -53,6 +53,7 @@ let UserService = class UserService extends base_service_1.BaseService {
             .post(this.baseUrl + '/Account/login', JSON.stringify({ email, password }), { headers })
             .map(res => res.json())
             .map(res => {
+            localStorage.setItem('userName', res.userName);
             localStorage.setItem('auth_token', res.token);
             this.loggedIn = true;
             this._authNavStatusSource.next(true);

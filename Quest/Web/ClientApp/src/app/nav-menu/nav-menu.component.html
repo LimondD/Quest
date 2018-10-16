@@ -12,13 +12,18 @@
       <a class="nav-item nav-link" routerLink="/fetch-data" (click)='collapse()'>
         <span class='glyphicon glyphicon-th-list'></span> Fetch data
       </a>
-      <a class="nav-item nav-link" routerLink="/login">
-        <span class='glyphicon glyphicon-th-list'></span> Login
-      </a>
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
+
+      <a *ngIf="!isLoggin" class="nav-item nav-link" routerLink="/login">
+        <span class='glyphicon glyphicon-th-list'></span> Login
+      </a>
+      <a *ngIf="isLoggin" class="nav-item nav-link" routerLink="/login">
+        <span class='glyphicon glyphicon-th-list'></span> {{userName}}
+      </a>
+
       <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
         <i class="fa fa-github"></i>
       </a>
