@@ -21,17 +21,11 @@
         <span class='glyphicon glyphicon-th-list'></span> Login
       </a>
       <a *ngIf="isLoggin" class="nav-item nav-link" routerLink="/login">
-        <span class='glyphicon glyphicon-th-list'></span> {{userName}}
+        {{userName}}
       </a>
-
-      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
-        <i class="fa fa-github"></i>
-      </a>
-      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
-        <i class="fa fa-twitter"></i>
-      </a>
-      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
-        <i class="fa fa-medium"></i>
+      <span class="nav-item nav-link">/</span>
+      <a *ngIf="isLoggin" class="nav-item nav-link" (click)="logout()">
+        Выйти
       </a>
     </div>
   </div>
