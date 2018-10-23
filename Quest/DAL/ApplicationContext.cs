@@ -1,4 +1,5 @@
-﻿using DAL.Models.User;
+﻿using DAL.Entities.Quest;
+using DAL.Models.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
@@ -9,5 +10,6 @@ namespace DAL
             : base(options) { }
 
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<QuestEntity> Quests { get; set; }
     }
 }
