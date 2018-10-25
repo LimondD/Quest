@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,5 +18,7 @@ namespace DAL.Entities.Quest
 
         [Required]
         public string Description { get; set; }
+
+        public ICollection<QuestImageEntity> Images { get; set; }
     }
 }
