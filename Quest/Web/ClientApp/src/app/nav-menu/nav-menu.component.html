@@ -18,13 +18,13 @@
     <div class="navbar-nav">
 
       <a *ngIf="!isLoggin" class="nav-item nav-link" routerLink="/login">
-        <span class='glyphicon glyphicon-th-list'></span> Login
+        Войти
       </a>
       <a *ngIf="isLoggin" class="nav-item nav-link" routerLink="/login">
         {{userName}}
       </a>
-      <span class="nav-item nav-link">/</span>
-      <a *ngIf="isLoggin" class="nav-item nav-link" (click)="logout()">
+      <span *ngIf="isLoggin" class="nav-item nav-link">/</span>
+      <a href="#" *ngIf="isLoggin" class="nav-item nav-link" (click)="logout()">
         Выйти
       </a>
     </div>

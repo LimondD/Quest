@@ -5,8 +5,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  templateUrl: './nav-menu.component.html'
 })
 export class NavMenuComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
@@ -29,5 +28,10 @@ export class NavMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // prevent memory leak by unsubscribing
     this.subscription.unsubscribe();
+  }
+
+  logout() {
+    this.userService.logout();
+    window.location.assign("/");
   }
 }
