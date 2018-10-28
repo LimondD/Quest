@@ -1,3 +1,4 @@
+using AutoMapper;
 using Core.Services.EncryptorService;
 using DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Web.AutoMapper;
 
 namespace Web
 {
@@ -43,6 +45,20 @@ namespace Web
             });
 
             #endregion
+
+            #region AUTOMAPPER
+
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            #endregion
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connection = Configuration.GetConnectionString("Main");

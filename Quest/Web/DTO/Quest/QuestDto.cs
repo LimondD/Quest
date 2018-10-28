@@ -7,5 +7,6 @@ namespace Web.DTO.Quest
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
+        public string ImageName { get; set; }
     }
 }

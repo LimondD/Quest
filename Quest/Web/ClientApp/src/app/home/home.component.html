@@ -1,13 +1,8 @@
-<div class="p-3">
-  <strong>Квест 1</strong>
-  <img class="rounded float-left w-25 p-3" src="/images/image1.jpeg" alt="Рисунок 1" />
-
+<div *ngFor="let quest of quests" class="p-3 clearfix">
+  <strong>{{quest.name}}</strong>
+  <img class="rounded float-left w-25 p-3" src="/images/{{quest.imageName}}" />
   <div>
-    Описание квеста 1
+    {{quest.shortDescription}}
   </div>
-</div>
-
-<div  *ngFor="let quest of quests">
-  <div>{{quest.name}}</div>
 </div>
 
