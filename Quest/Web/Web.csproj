@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\images\image1.jpeg" />
+    <None Include="wwwroot\images\image1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
