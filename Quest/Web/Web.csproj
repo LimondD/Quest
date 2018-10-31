@@ -32,6 +32,7 @@
     <None Remove="ClientApp\src\app\account\profile\profile.routing.ts" />
     <None Remove="ClientApp\src\app\account\UserModel.ts" />
     <None Remove="ClientApp\src\app\app.routing.ts" />
+    <None Remove="ClientApp\src\app\home\questModal\quest-modal.ts" />
     <None Remove="ClientApp\src\app\shared\directives\confirm-equal-validator.directive.ts" />
     <None Remove="ClientApp\src\app\shared\directives\email-validator.directive.ts" />
   </ItemGroup>
@@ -55,6 +56,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\account\profile\profile.routing.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\account\UserModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\home\questModal\quest-modal.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\directives\confirm-equal-validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\directives\email-validator.directive.ts" />
   </ItemGroup>
