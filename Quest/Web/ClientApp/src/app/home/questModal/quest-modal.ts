@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
@@ -6,10 +6,17 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   selector: 'quest-modal',
   templateUrl: './quest-modal.html'
 })
-export class QuestModal {
+export class QuestModal implements OnInit {
+  @Input() questId: string;
   closeResult: string;
 
   constructor(private modalService: NgbModal) {}
+
+  ngOnInit() {
+
+    alert("onInit QuestModal " + this.questId);
+  }
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'quest-modal-title'}).result.then((result) => {

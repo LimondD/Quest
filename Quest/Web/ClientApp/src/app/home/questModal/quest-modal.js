@@ -12,6 +12,9 @@ let QuestModal = class QuestModal {
     constructor(modalService) {
         this.modalService = modalService;
     }
+    ngOnInit() {
+        alert("onInit QuestModal" + this.questId);
+    }
     open(content) {
         this.modalService.open(content, { ariaLabelledBy: 'quest-modal-title' }).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
@@ -31,6 +34,9 @@ let QuestModal = class QuestModal {
         }
     }
 };
+__decorate([
+    core_1.Input()
+], QuestModal.prototype, "questId", void 0);
 QuestModal = __decorate([
     core_1.Component({
         selector: 'quest-modal',
