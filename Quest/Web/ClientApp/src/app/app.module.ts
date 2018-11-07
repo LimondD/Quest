@@ -14,6 +14,7 @@ import { UiModule } from './ui/ui.module';
 import { routing } from './app.routing';
 
 import { ConfigService } from './shared/utils/config.service';
+import { QuestService } from './shared/services/quest.service';
 import { AccountModule } from './account/account.module';
 import { QuestModal } from './home/questModal/quest-modal';
 
@@ -35,9 +36,9 @@ import { QuestModal } from './home/questModal/quest-modal';
     UiModule,
   ],
   providers: [ConfigService, {
-    provide: XHRBackend,
-    useClass: AuthenticateXHRBackend
-  }],
+      provide: XHRBackend,
+      useClass: AuthenticateXHRBackend
+  }, QuestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

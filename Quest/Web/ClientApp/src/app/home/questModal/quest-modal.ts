@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
+import { QuestService } from '../../shared/services/quest.service';
 
 @Component({
   selector: 'quest-modal',
@@ -10,7 +12,7 @@ export class QuestModal implements OnInit {
   @Input() questId: string;
   closeResult: string;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private questService: QuestService) {}
 
   ngOnInit() {
 
@@ -19,11 +21,19 @@ export class QuestModal implements OnInit {
 
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'quest-modal-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.questService.getQuestDetails(this.questId).subscribe(result => {
+      //this.quests = result;
+      this.modalService.open(content, { ariaLabelledBy: 'quest-modal-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }, error => console.error(error));
+    //this.modalService.open(content, {ariaLabelledBy: 'quest-modal-title'}).result.then((result) => {
+    //  this.closeResult = `Closed with: ${result}`;
+    //}, (reason) => {
+    //  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    //});
   }
 
   private getDismissReason(reason: any): string {

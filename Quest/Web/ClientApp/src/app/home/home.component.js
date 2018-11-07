@@ -11,10 +11,13 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 let HomeComponent = class HomeComponent {
-    constructor(http, baseUrl) {
-        http.get(baseUrl + 'api/Quest/GetQuests').subscribe(result => {
+    constructor(http, questService, baseUrl) {
+        questService.getQuests().subscribe(result => {
             this.quests = result;
         }, error => console.error(error));
+        //http.get<Quest[]>(baseUrl + 'api/Quest/GetQuests').subscribe(result => {
+        //  this.quests = result;
+        //}, error => console.error(error));
     }
 };
 HomeComponent = __decorate([
@@ -22,7 +25,7 @@ HomeComponent = __decorate([
         selector: 'app-home',
         templateUrl: './home.component.html',
     }),
-    __param(1, core_1.Inject('BASE_URL'))
+    __param(2, core_1.Inject('BASE_URL'))
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map

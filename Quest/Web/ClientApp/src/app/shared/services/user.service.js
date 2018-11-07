@@ -62,6 +62,7 @@ let UserService = class UserService extends base_service_1.BaseService {
             .catch(this.handleError);
     }
     logout() {
+        localStorage.removeItem('userName');
         localStorage.removeItem('auth_token');
         this.loggedIn = false;
         this._authNavStatusSource.next(false);

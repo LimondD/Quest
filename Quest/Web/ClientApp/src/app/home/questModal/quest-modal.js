@@ -9,18 +9,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 let QuestModal = class QuestModal {
-    constructor(modalService) {
+    constructor(modalService, questService) {
         this.modalService = modalService;
+        this.questService = questService;
     }
     ngOnInit() {
-        alert("onInit QuestModal" + this.questId);
+        alert("onInit QuestModal " + this.questId);
     }
     open(content) {
-        this.modalService.open(content, { ariaLabelledBy: 'quest-modal-title' }).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
+        this.questService.getQuestDetails(this.questId).subscribe(result => {
+            //this.quests = result;
+            this.modalService.open(content, { ariaLabelledBy: 'quest-modal-title' }).result.then((result) => {
+                this.closeResult = `Closed with: ${result}`;
+            }, (reason) => {
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            });
+        }, error => console.error(error));
+        //this.modalService.open(content, {ariaLabelledBy: 'quest-modal-title'}).result.then((result) => {
+        //  this.closeResult = `Closed with: ${result}`;
+        //}, (reason) => {
+        //  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        //});
     }
     getDismissReason(reason) {
         if (reason === ng_bootstrap_1.ModalDismissReasons.ESC) {
