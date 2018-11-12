@@ -34,7 +34,7 @@ namespace Web.Controllers
         [HttpGet("[action]/{id}")]
         public QuestDto GetQuestDetails(Guid id)
         {
-            var result = _mapper.Map<QuestDto>(_db.Quests.Include(x => x.Images).Where(x => !x.IsDeleted).First(x => x.Id == id));
+            var result = _mapper.Map<QuestDetailDto>(_db.Quests.Include(x => x.Images).Where(x => !x.IsDeleted).First(x => x.Id == id));
 
             return result;
         }

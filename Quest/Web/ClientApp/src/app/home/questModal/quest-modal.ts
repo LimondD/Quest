@@ -1,28 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { QuestService } from '../../shared/services/quest.service';
 
+import { QuestDetail } from '../../shared/models/quest/questDetail';
+
 @Component({
   selector: 'quest-modal',
   templateUrl: './quest-modal.html'
 })
-export class QuestModal implements OnInit {
+export class QuestModal {
+  public quest: QuestDetail;
   @Input() questId: string;
   closeResult: string;
 
   constructor(private modalService: NgbModal, private questService: QuestService) {}
 
-  ngOnInit() {
-
-    alert("onInit QuestModal " + this.questId);
-  }
-
-
   open(content) {
     this.questService.getQuestDetails(this.questId).subscribe(result => {
-      //this.quests = result;
+      this.quest = result;
       this.modalService.open(content, { ariaLabelledBy: 'quest-modal-title' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {

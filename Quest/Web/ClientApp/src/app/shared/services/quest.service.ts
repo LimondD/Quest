@@ -23,6 +23,6 @@ export class QuestService extends BaseService {
   }
 
   getQuestDetails(id: string) {
-    return this.http.get<QuestDetail[]>(this.baseUrl + '/GetQuestDetails/' + id );
+    return this.http.get<QuestDetail>(this.baseUrl + '/GetQuestDetails/' + id );
   }
 }

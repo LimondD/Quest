@@ -13,12 +13,9 @@ let QuestModal = class QuestModal {
         this.modalService = modalService;
         this.questService = questService;
     }
-    ngOnInit() {
-        alert("onInit QuestModal " + this.questId);
-    }
     open(content) {
         this.questService.getQuestDetails(this.questId).subscribe(result => {
-            //this.quests = result;
+            this.quest = result;
             this.modalService.open(content, { ariaLabelledBy: 'quest-modal-title' }).result.then((result) => {
                 this.closeResult = `Closed with: ${result}`;
             }, (reason) => {
