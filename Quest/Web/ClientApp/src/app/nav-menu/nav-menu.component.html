@@ -1,10 +1,10 @@
 
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Angular & Bootstrap</a>
+  <a class="navbar-brand" href="/">Квесты</a>
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/" (click)='collapse()'>
-        <span class='glyphicon glyphicon-home'></span> Home
+        <span class='glyphicon glyphicon-home'></span> Главная
       </a>
       <a class="nav-item nav-link" routerLink="/counter" (click)='collapse()'>
         <span class='glyphicon glyphicon-education'></span> Counter
@@ -20,7 +20,7 @@
       <a *ngIf="!isLoggin" class="nav-item nav-link" routerLink="/login">
         Войти
       </a>
-      <a *ngIf="isLoggin" class="nav-item nav-link" routerLink="/login">
+      <a *ngIf="isLoggin" class="nav-item nav-link" routerLink="/profile">
         {{userName}}
       </a>
       <span *ngIf="isLoggin" class="nav-item nav-link">/</span>
