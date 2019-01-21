@@ -45,7 +45,6 @@ export class UserService extends BaseService {
     }
 
   create(user) {
-
     let body = JSON.stringify(user);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -54,6 +53,16 @@ export class UserService extends BaseService {
     return this.http.put(this.baseUrl + "/Account/CreateUser", body, options)
       //.map(res => res.json())
       .catch(this.handleError);
+  }
+
+  getUser() {
+    let body = JSON.stringify(localStorage.getItem('auth_token'));
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.baseUrl + '/Account/GetUser', body, options)
+      .map(res => res.json());
   }
 
    login(email, password) {

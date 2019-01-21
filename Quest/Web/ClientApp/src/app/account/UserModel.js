@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class UserModel {
     constructor() {
-        this.lastname = "";
+        this.lastname = "sss";
         this.name = "";
         this.patronymic = "";
-        this.birthDate = "";
+        this.birthDate = new Date();
         this.email = "";
         this.password = "";
         this.confirmPassword = "";

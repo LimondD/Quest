@@ -1,4 +1,5 @@
-﻿using Core.Services.EncryptorService;
+﻿using AutoMapper;
+using Core.Services.EncryptorService;
 using DAL;
 using DAL.Models.User;
 using Microsoft.AspNetCore.Authorization;
@@ -23,14 +24,17 @@ namespace Web.Controllers
 
         private readonly IConfiguration _config;
         private readonly IEncryptorService _encryptorService;
+        private readonly IMapper _mapper;
 
         public AccountController(ApplicationContext db,
             IConfiguration config,
-            IEncryptorService encryptorService)
+            IEncryptorService encryptorService,
+            IMapper mapper)
         {
             _db = db;
             _config = config;
             _encryptorService = encryptorService;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -46,6 +50,14 @@ namespace Web.Controllers
             }
 
             return response;
+        }
+
+        public UserDto GetUser([FromBody] string token)
+        {
+            var readToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
+            var userId = new Guid(readToken.Id);
+            var model = _mapper.Map<UserDto>(_db.Users.First(x => x.Id == userId));
+            return model;
         }
 
         public IActionResult CreateUser(UserDto user)
@@ -77,7 +89,7 @@ namespace Web.Controllers
                 new Claim(JwtRegisteredClaimNames.Sub, userInfo.Name),
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
                 //new Claim("DateOfJoing", userInfo.DateOfJoing.ToString("yyyy-MM-dd")),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, userInfo.Id.ToString())
                 };
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
@@ -94,15 +106,6 @@ namespace Web.Controllers
             var hashPassword = _encryptorService.Encrypt(creditional.Password);
 
             return _db.Users.FirstOrDefault(x => x.Password == hashPassword && x.Email == creditional.Email);
-            //UserModel user = null;
-
-            ////Validate the User Credentials 
-            ////Demo Purpose, I have Passed HardCoded User Information 
-            //if (login.Username == "Jignesh")
-            //{
-            //    user = new UserModel { Username = "Jignesh Trivedi", EmailAddress = "test.btest@gmail.com" };
-            //}
-            //return user;
         }
     }
 }

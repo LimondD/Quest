@@ -7,10 +7,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const UserModel_1 = require("../UserModel");
 let ProfileComponent = class ProfileComponent {
-    constructor() { }
+    constructor(userService, router) {
+        this.userService = userService;
+        this.router = router;
+        this.user = new UserModel_1.UserModel();
+        userService.getUser().subscribe(result => {
+            this.user = result;
+        }, error => console.error(error));
+    }
     ngOnInit() {
     }
+    save() {
+        alert('Сохранение');
+        //return this.userService.create(this.user)
+        //  .subscribe(result => {
+        //    this.router.navigate(['/login']);
+        //  },
+        //    error => console.log(error)
+        //  );
+    }
+    ;
 };
 ProfileComponent = __decorate([
     core_1.Component({

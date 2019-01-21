@@ -1,8 +1,8 @@
 export class UserModel {
-  lastname: string = "";
+  lastname: string = "sss";
   name: string = "";
   patronymic: string = "";
-  birthDate: string = "";
+  birthDate: Date = new Date();
   email: string = "";
   password: string = "";
   confirmPassword: string = "";
