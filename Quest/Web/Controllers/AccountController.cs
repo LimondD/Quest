@@ -80,6 +80,22 @@ namespace Web.Controllers
             return Ok();
         }
 
+        public IActionResult SaveUser(UserDto userDto, string token)
+        {
+            var readToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
+            var userId = new Guid(readToken.Id);
+            var user = _db.Users.FirstOrDefault(x => x.Id == userId);
+
+            user.LastName = userDto.LastName;
+            user.Name = userDto.Name;
+            user.Patronymic = userDto.Patronymic;
+            user.BirthDate = userDto.BirthDate;
+            user.EditedDate = DateTime.Now;
+            _db.SaveChanges();
+
+            return Ok();
+        }
+
         private string GenerateJSONWebToken(UserEntity userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

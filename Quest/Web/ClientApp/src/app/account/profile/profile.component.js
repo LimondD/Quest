@@ -20,13 +20,10 @@ let ProfileComponent = class ProfileComponent {
     ngOnInit() {
     }
     save() {
-        alert('Сохранение');
-        //return this.userService.create(this.user)
-        //  .subscribe(result => {
-        //    this.router.navigate(['/login']);
-        //  },
-        //    error => console.log(error)
-        //  );
+        return this.userService.save(this.user)
+            .subscribe(result => {
+            this.router.navigate(['/login']);
+        }, error => console.log(error));
     }
     ;
 };
