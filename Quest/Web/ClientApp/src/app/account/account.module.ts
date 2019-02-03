@@ -11,9 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmEqualValidatorDirective } from '../shared/directives/confirm-equal-validator.directive';
 import { EmailValidatorDirective } from '../shared/directives/email-validator.directive';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
-    CommonModule, FormsModule, AccountRoutingModule
+    CommonModule, FormsModule, AccountRoutingModule, NgbModule
   ],
   declarations: [RegistrationFormComponent, LoginFormComponent, ProfileComponent, ConfirmEqualValidatorDirective, EmailValidatorDirective],
   providers: [UserService]

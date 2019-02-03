@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -52,14 +53,6 @@ namespace Web.Controllers
             return response;
         }
 
-        public UserDto GetUser([FromBody] string token)
-        {
-            var readToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
-            var userId = new Guid(readToken.Id);
-            var model = _mapper.Map<UserDto>(_db.Users.First(x => x.Id == userId));
-            return model;
-        }
-
         public IActionResult CreateUser(UserDto user)
         {
             _db.Users.Add(new UserEntity
@@ -80,32 +73,13 @@ namespace Web.Controllers
             return Ok();
         }
 
-        public IActionResult SaveUser(UserDto userDto, string token)
-        {
-            var readToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
-            var userId = new Guid(readToken.Id);
-            var user = _db.Users.FirstOrDefault(x => x.Id == userId);
-
-            user.LastName = userDto.LastName;
-            user.Name = userDto.Name;
-            user.Patronymic = userDto.Patronymic;
-            user.BirthDate = userDto.BirthDate;
-            user.EditedDate = DateTime.Now;
-            _db.SaveChanges();
-
-            return Ok();
-        }
-
         private string GenerateJSONWebToken(UserEntity userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.Sub, userInfo.Name),
-                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
-                //new Claim("DateOfJoing", userInfo.DateOfJoing.ToString("yyyy-MM-dd")),
-                new Claim(JwtRegisteredClaimNames.Jti, userInfo.Id.ToString())
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userInfo.Id.ToString())
                 };
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],

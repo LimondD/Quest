@@ -11,6 +11,7 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  successMessage: string;
   user = new UserModel();
   constructor(private userService: UserService, private router: Router) {
     userService.getUser().subscribe(result => {
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
   save() {
     return this.userService.save(this.user)
       .subscribe(result => {
-        this.router.navigate(['/login']);
+        this.successMessage = result._body;
       },
         error => console.log(error)
       );

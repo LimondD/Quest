@@ -1,3 +1,5 @@
+<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
 <form #f="ngForm" (ngSubmit)="save(f)">
   <div class="form-row form-group">
     <div class="col">

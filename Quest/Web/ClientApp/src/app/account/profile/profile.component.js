@@ -22,7 +22,7 @@ let ProfileComponent = class ProfileComponent {
     save() {
         return this.userService.save(this.user)
             .subscribe(result => {
-            this.router.navigate(['/login']);
+            this.successMessage = result.toString(); // "Данные успешно изменены.";
         }, error => console.log(error));
     }
     ;

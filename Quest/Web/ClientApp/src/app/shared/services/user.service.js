@@ -48,20 +48,22 @@ let UserService = class UserService extends base_service_1.BaseService {
     }
     save(userDto) {
         let body = JSON.stringify(userDto);
-        var token = JSON.stringify(localStorage.getItem('auth_token'));
-        let headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        let headers = new http_1.Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        });
         let options = new http_1.RequestOptions({ headers: headers });
-        return this.http.put(this.baseUrl + "/Account/SaveUser", body + token, options)
+        return this.http.put(this.baseUrl + "/User/SaveUser", body, options)
             //.map(res => res.json())
             .catch(this.handleError);
     }
     getUser() {
-        let body = JSON.stringify(localStorage.getItem('auth_token'));
-        let headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
+        let headers = new http_1.Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+        });
         let options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this.baseUrl + '/Account/GetUser', body, options)
+        return this.http.get(this.baseUrl + '/User/GetUser', options)
             .map(res => res.json());
     }
     login(email, password) {
